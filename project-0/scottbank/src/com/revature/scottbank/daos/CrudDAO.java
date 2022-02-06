@@ -1,5 +1,7 @@
 package com.revature.scottbank.daos;
 
+import com.revature.scottbank.util.List;
+
 public interface CrudDAO<T> {
 
 	// Create, Read, Update, Delete

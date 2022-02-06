@@ -11,12 +11,21 @@ public abstract class Menu {
 	protected BufferedReader consoleReader;
 	protected MenuRouter router;
 	
+	public Menu() {
+	
+	}
 	public Menu(String name, String route, BufferedReader consoleReader, MenuRouter router) {
 		super();
 		this.name = name;
 		this.route = route;
 		this.consoleReader = consoleReader;
 		this.router = router;
+	}
+	
+	public Menu(BufferedReader consoleReader, MenuRouter router, CustomerService customerService) {
+		this.consoleReader = consoleReader;
+		this.router = router;
+		this.customerService = customerService;
 	}
 	
 	public String getName() {
