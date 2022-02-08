@@ -2,20 +2,21 @@ package com.revature.scottbank.menus;
 
 import java.io.BufferedReader;
 
+import com.revature.scottbank.services.CustomerService;
 import com.revature.scottbank.util.MenuRouter;
 import static com.revature.scottbank.util.AppState.shutdown;
 
 public class WelcomeMenu extends Menu {
-	public WelcomeMenu(BufferedReader consoleReader, MenuRouter router) {
-		super("Welcome", "/welcome", consoleReader, router);
+	public WelcomeMenu(BufferedReader consoleReader, MenuRouter router, CustomerService customerService) {
+		super("Welcome", "/welcome", consoleReader, router, customerService);
 		// TODO Auto-generated constructor stub
+		
 	}
-
+	
 	@Override
 	public void render() throws Exception {
 		
-		System.out.print(
-				"Welcome to Scott Bank!\n" + "1) Login\n" + "2) Register\n" + "3) Exits\n" + ">> ");
+		System.out.print("Welcome to Scott Bank!\n" + "1) Login\n" + "2) Register\n" + "3) Exits\n" + ">> ");
 		
 		String userSelection = consoleReader.readLine();
 
@@ -31,6 +32,7 @@ public class WelcomeMenu extends Menu {
 			break;
 		default:
 			System.out.println("Invalid input");
+			router.transfer("/welcome");
 			break;
 		}
 		

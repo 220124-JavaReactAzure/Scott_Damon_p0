@@ -21,14 +21,14 @@ public class AppState {
 			BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 			
 			CustomerService customerService = new CustomerService();
-			router.addMenu(new WelcomeMenu(consoleReader, router));
+			router.addMenu(new WelcomeMenu(consoleReader, router, customerService));
 			router.addMenu(new RegisterMenu(consoleReader, router, customerService));
 		}
 
 public void startUp() {
 	try {
 		while(isRunning) {
-		router.transfer("/Welcome");
+		router.transfer("/welcome");
 		}
 	} catch (Exception e) {
 		e.printStackTrace();

@@ -1,8 +1,5 @@
 package com.revature.scottbank.util;
 
-
-import java.util.LinkedList;
-
 import com.revature.scottbank.menus.Menu;
 
 public class MenuRouter {
