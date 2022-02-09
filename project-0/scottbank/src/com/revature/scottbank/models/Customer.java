@@ -26,6 +26,16 @@ public class Customer implements Serializable {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public Customer(String customerId, String firstName, String lastName, String email, String username, String password) {
+		super();
+		this.customerId = customerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -75,5 +85,17 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& Objects.equals(customerId, other.customerId) && Objects.equals(username, other.username);
+	}
 }

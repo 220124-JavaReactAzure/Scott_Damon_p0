@@ -14,14 +14,14 @@ public class DashboardMenu extends Menu {
 	
 	public void render() throws Exception {
 		
-		System.out.println("Welcome!\n 1) Withdraw\n 2) Deposit\n 3) Check Balance\n 4) Reset password\n >>");
+		System.out.println("Welcome!\n 1) Create Account\n 2) Withdraw\n 3) Deposit\n 4) Check Balance\n 5) Reset password\n >>");
 		
 		String userSelection = consoleReader.readLine();
 		
 		switch(userSelection) {
 		
 		case("1"):
-			router.transfer("/accountType");
+			router.transfer("/accountMenu");
 			break;
 		
 		
@@ -32,8 +32,12 @@ public class DashboardMenu extends Menu {
 		case("3"):
 			router.transfer("/accountType");
 			break;
-			
+		
 		case("4"):
+			router.transfer("/accountmenu");
+			break;
+			
+		case("5"):
 			router.transfer("/passReset");
 			break;
 			

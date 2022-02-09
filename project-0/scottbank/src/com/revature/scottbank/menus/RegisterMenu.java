@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 
 import com.revature.scottbank.services.CustomerService;
 import com.revature.scottbank.util.MenuRouter;
+import com.revature.scottbank.exceptions.InvalidRequestException;
 import com.revature.scottbank.models.Customer;
 
 public class RegisterMenu extends Menu {
@@ -16,31 +17,37 @@ public class RegisterMenu extends Menu {
 	public RegisterMenu(BufferedReader consoleReader, MenuRouter router, CustomerService customerService) {
 		super("Register", "/register", consoleReader, router, customerService);
 	}
-
+		
 	@Override
 	public void render() throws Exception {
-		Customer customer = new Customer();
-		String firstName = "";
-		String lastName = "";
-		String email = "";
-		String username = "";
-		String password = "";
+		
 			System.out.print("Enter your first name: ");
-			firstName = consoleReader.readLine();
-			customer.setFirstName(firstName);
+			String firstName = consoleReader.readLine();
+			
 			System.out.print("Enter your last name: ");
-			lastName = consoleReader.readLine();
-			customer.setLastName(lastName);
+			String lastName = consoleReader.readLine();
+			
 			System.out.print("Enter your email: ");
-			email = consoleReader.readLine();
-			customer.setEmail(email);
+			String email = consoleReader.readLine();
+			
 			System.out.print("Enter your username: ");
-			username = consoleReader.readLine();
-			customer.setUsername(username);
+			String username = consoleReader.readLine();
+			
 			System.out.print("Enter your password: ");
-			password = consoleReader.readLine();
-			customer.setPassword(password);
-	}
+			String password = consoleReader.readLine();
+			
+			String customerId = "";
+			
+			Customer customer = new Customer(customerId, firstName, lastName, email, username, password);
+			try {
+				customerService.registerNewCustomer(customer);
+			}catch (InvalidRequestException e) {
+				System.out.println("Invaid data entered please try again\n\n\n");
+				
+				router.transfer("/register");
+			}
+			router.transfer("/dashboard");
+		}
 }
 
 

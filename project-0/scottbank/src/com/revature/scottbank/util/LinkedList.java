@@ -1,10 +1,5 @@
 package com.revature.scottbank.util;
 
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Serializable;
-
-import org.w3c.dom.Node;
 
 
 public class LinkedList<T> implements List<T>{
