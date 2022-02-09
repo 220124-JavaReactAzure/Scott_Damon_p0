@@ -11,8 +11,8 @@ create table customer(
 );
 
 create table accountDetails(
-	account_type varchar(128),
-	customer_account_id int,
+	account_type varchar(20),
+	customer_account_id varchar(128),
 	checking_balance double precision,
 	savings_balance double precision,
 	account_id int primary key,

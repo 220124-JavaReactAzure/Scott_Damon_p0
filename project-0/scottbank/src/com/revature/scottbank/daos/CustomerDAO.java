@@ -170,7 +170,7 @@ public class CustomerDAO implements CrudDAO<Customer> {
 
 	@Override
 	public boolean update(Customer updatedObj) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
