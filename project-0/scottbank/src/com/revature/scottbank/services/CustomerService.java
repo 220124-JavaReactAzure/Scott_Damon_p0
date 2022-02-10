@@ -13,11 +13,16 @@ import com.revature.scottbank.exceptions.ResourcePersistenceException;
 import com.revature.scottbank.models.Customer;
 import com.revature.scottbank.util.List;
 
+/* Purely business logic
+ * Business validation steps. Is what has been entered appropriate or valid?
+ * not interacting with the Database EVER
+ */
 public class CustomerService {
 
 	private final CustomerDAO customerDao;
 	private Customer sessionCustomer;
 	
+	// DI - Dependency Injection of the DAO
 	public CustomerService(CustomerDAO customerDAO) {
 		this.customerDao = customerDAO;
 		this.sessionCustomer = null;
@@ -29,7 +34,7 @@ public class CustomerService {
 	
 	public Customer registerNewCustomer(Customer newCustomer) {
 		if(!isCustomerValid(newCustomer)) {
-			throw new InvalidRequestException("Invalid user data provider");
+			throw new InvalidRequestException("Invalid user data provided");
 		}
 
 		boolean usernameAvailable = customerDao.findByUsername(newCustomer.getUsername()) == null;

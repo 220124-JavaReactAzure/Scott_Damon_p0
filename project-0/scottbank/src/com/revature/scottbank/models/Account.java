@@ -3,12 +3,10 @@ package com.revature.scottbank.models;
 public class Account {
 
 	
-	// TODO: Attributes go here. checking, savings, checkingBalance, SavingsBalance
-
 	private Customer accountOwner;
 	private String accountId;
-	private double checkingBalance;
-	private double savingsBalance;
+	private double balance;
+	private String accountName;
 	
 	
 	
@@ -16,15 +14,18 @@ public class Account {
 		super();
 	}
 	
-	public Account(String accountId, double checkingtBalance, double savingsBalance, Customer accountOwner) {
-		this.checkingBalance = checkingtBalance;
-		this.savingsBalance = savingsBalance;
+	public Account(String accountId, String accountName, double balance, Customer accountOwner) {
+		this.accountName = accountName;
+		this.balance = balance;
 		this.accountId = accountId;
-	
-
+		this.accountOwner = accountOwner;
 
 }
-
+	public Account (String accountName, double balance) {
+		this.accountName = accountName;
+		this.balance = balance;
+	}
+	
 	public Customer getAccountOwner() {
 		return accountOwner;
 	}
@@ -41,19 +42,21 @@ public class Account {
 		this.accountId = accountId;
 	}
 
-	public double getCheckingBalance() {
-		return checkingBalance;
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
-	public void setCheckingBalance(double checkingBalance) {
-		this.checkingBalance = checkingBalance;
+	
+	public String getAccountName() {
+		return accountName;
 	}
 
-	public double getSavingsBalance() {
-		return savingsBalance;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
-	public void setSavingsBalance(double savingsBalance) {
-		this.savingsBalance = savingsBalance;
-	}
+
 }

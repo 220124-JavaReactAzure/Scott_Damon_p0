@@ -27,16 +27,26 @@ public class AccountDAO implements CrudDAO<Account> {
 			newAccount.setAccountId(UUID.randomUUID().toString());
 			
 			String sql = "insert into accountdetails (account_id,"
-					+ " customer_account_id, checking_balance, savings_balance,"
-					+ " customer_account_id) values (default, ?, ?, ?, ?)";
+					+ " customer_account_id, balance, account_name) values (?, ?, ?, ?)";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, newAccount.getAccountId());
 			ps.setString(2,	newAccount.getAccountOwner().getCustomerId());
-			ps.setDouble(4, newAccount.getCheckingBalance());
-			ps.setDouble(5, newAccount.getSavingsBalance());
+			ps.setDouble(3, newAccount.getBalance());
+			ps.setString(4, newAccount.getAccountName());
 			
+			
+//			ResultSet rs = ps.executeQuery();
+//			while(rs.next()) {
+//				newAccount.setAccountId(rs.getString("account_id"));
+//				newAccount. setAccountOwner(rs.getString("customer_account_id"));
+//				newAccount.setBalance(rs.getDouble("balance"));
+//				newAccount.setAccountName(rs.getString("account_name"));
+//			}
+			
+			
+
 			
 			int rowsInserted = ps.executeUpdate();
 			
@@ -65,9 +75,9 @@ public List<Account> findAll() {
 		while (resultSet.next()) {
 			Account account = new Account();
 			account.setAccountId(resultSet.getString("account_id"));
-//			account.setAccountOwner(resultSet.get("customer_account_id"));
-			account.setCheckingBalance(resultSet.getDouble("checking_balance"));
-			account.setSavingsBalance(resultSet.getDouble("savings_balance"));
+//			account.setAccountOwner( resultSet).getAccountOwner().getCustomerId("customer_account_id");
+			account.setAccountName(resultSet.getString("account_name"));
+			account.setBalance(resultSet.getDouble("balance"));
 
 
 			accountList.add(account);
@@ -91,8 +101,7 @@ return null;
 
 @Override
 public boolean update(Account updatedObj) {
-// TODO Auto-generated method stub
-return false;
+	return false;
 }
 
 @Override

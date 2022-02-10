@@ -16,10 +16,8 @@ public class AccountService {
 	
 }
 	
-	public void createAccount(Account newAccount) {
-		if(!isAccountValid(newAccount)) {
-			throw new InvalidRequestException("Invalid information provided.");
-		}
+	public Account createAccount(Account newAccount) {
+		
 		
 		newAccount.setAccountOwner(customerService.getSessionCustomer());
 		Account createdAccount = accountDao.create(newAccount);
@@ -27,16 +25,16 @@ public class AccountService {
 		if(createdAccount == null) {
 			throw new ResourcePersistenceException("The account was unable to be persisted");
 		}
-		
+		return newAccount;
 	}
 	
 	private boolean isAccountValid(Account newAccount) {
 		
+		if(newAccount == null) return false;
 		if(newAccount.getAccountId() == null) return false;
 		if(newAccount.getAccountOwner() == null) return false;
-		if(newAccount.getCheckingBalance() < 0.0) return false;
-		if(newAccount.getSavingsBalance() < 0.0) return false;
-		return true;
+		return newAccount.getBalance() == 0;
+		
 	}
 	
 }

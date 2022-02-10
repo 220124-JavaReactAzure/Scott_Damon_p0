@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 
 import com.revature.scottbank.services.AccountService;
 import com.revature.scottbank.util.MenuRouter;
+import com.revature.scottbank.exceptions.AuthenticationException;
 import com.revature.scottbank.exceptions.InvalidRequestException;
 import com.revature.scottbank.models.Account;
 import com.revature.scottbank.models.Customer;
@@ -15,39 +16,38 @@ public class AccountMenu extends Menu{
 		
 	}
 	
-	public AccountMenu(BufferedReader consoleReader, MenuRouter router, AccountService customerService) {
-		super("Accountmenu", "/accountmenu", consoleReader, router, customerService);
+	public AccountMenu(BufferedReader consoleReader, MenuRouter router, AccountService accountService) {
+		super("Accountmenu", "/accountmenu", consoleReader, router, accountService);
 	}
 		
 	@Override
 	public void render() throws Exception {
 		
-		System.out.print("You have chosen to create an account\n 1) Checking\n 2) Savings\n 3) Back \n >>");
 	
-		String userSelection = consoleReader.readLine();
-		
-		switch(userSelection) {
-		
-		case"1":
-			router.transfer("/createchecking");
-			break;
-			
-		case"2":
-			router.transfer("/createsavings");
-			break;
-			
-		case"3":
-			router.transfer("/dashboard");
-			break;
-			
-		
-		default:
-			System.out.println("Invalid input, try again\n\n\n");
-			router.transfer("/accountmenu");
-			break;
-			
-		}
-			
-	}
+	System.out.print("Enter the name of the account: ");
+	
+	String accountName = consoleReader.readLine();
+	
+	System.out.print("Enter the starting balance: ");
+	String balanceString = consoleReader.readLine();
+	
+	double balance = 0.0;
+	
+	balance = Double.valueOf(balanceString);
 
+	
+	while(balance < 0) {
+		System.out.println("The value must at least be 0.\nEnter the starting balance: ");
+		
+		balanceString = consoleReader.readLine();
+	}
+	System.out.println("Starting account balance: $" + balance);
+	balance = Double.valueOf(balanceString);
+	Account newAccount = new Account(accountName, balance);
+
+	accountService.createAccount(newAccount);
+
+	
+	router.transfer("/dashboard");
+	}
 }

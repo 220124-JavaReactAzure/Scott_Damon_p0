@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import com.revature.scottbank.daos.CustomerDAO;
 import com.revature.scottbank.daos.AccountDAO;
 import com.revature.scottbank.menus.AccountMenu;
+// import com.revature.scottbank.menus.AccountMenu;
 import com.revature.scottbank.menus.DashboardMenu;
 import com.revature.scottbank.menus.LoginMenu;
 import com.revature.scottbank.menus.RegisterMenu;
@@ -33,7 +34,7 @@ public class AppState {
 			CustomerService customerService = new CustomerService(customerDao);
 			router.addMenu(new WelcomeMenu(consoleReader, router, customerService));
 			router.addMenu(new RegisterMenu(consoleReader, router, customerService));
-			router.addMenu(new LoginMenu(consoleReader, router, customerService));
+			router.addMenu(new LoginMenu(consoleReader, router, customerService));		
 			router.addMenu(new DashboardMenu(consoleReader, router, customerService));
 			
 			
