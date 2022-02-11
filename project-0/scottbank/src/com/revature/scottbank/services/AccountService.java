@@ -4,6 +4,7 @@ import com.revature.scottbank.daos.AccountDAO;
 import com.revature.scottbank.exceptions.InvalidRequestException;
 import com.revature.scottbank.exceptions.ResourcePersistenceException;
 import com.revature.scottbank.models.Account;
+import com.revature.scottbank.util.List;
 
 public class AccountService {
 
@@ -16,27 +17,25 @@ public class AccountService {
 	
 }
 	
-	public Account createAccount(Account newAccount) {
-		
-		
-		newAccount.setAccountOwner(customerService.getSessionCustomer());
-		Account createdAccount = accountDao.create(newAccount);
-		
-		if(createdAccount == null) {
-			throw new ResourcePersistenceException("The account was unable to be persisted");
+	public void createAccount(Account newAccount) {	
+
+			
+			newAccount.setAccountOwner(customerService.getSessionCustomer());
+			Account createdAccount = accountDao.create(newAccount);
+			
+			if(createdAccount == null) {
+				throw new ResourcePersistenceException("The account could not be persisted");
+			}
+			
 		}
-		return newAccount;
+	public List<Account> findAllBankAccounts(){
+		return accountDao.findAll();
 	}
-	
-	private boolean isAccountValid(Account newAccount) {
-		
-		if(newAccount == null) return false;
-		if(newAccount.getAccountId() == null) return false;
-		if(newAccount.getAccountOwner() == null) return false;
-		return newAccount.getBalance() == 0;
-		
+	public boolean updateBalance(double updatedBalance) {
+		return accountDao.update(updatedBalance);
 	}
-	
+
+
 }
 
 	

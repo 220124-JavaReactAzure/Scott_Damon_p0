@@ -6,11 +6,16 @@ import java.io.InputStreamReader;
 import com.revature.scottbank.daos.CustomerDAO;
 import com.revature.scottbank.daos.AccountDAO;
 import com.revature.scottbank.menus.AccountMenu;
-// import com.revature.scottbank.menus.AccountMenu;
+import com.revature.scottbank.menus.BalanceOutput;
+import com.revature.scottbank.menus.Withdraw;
+//import com.revature.scottbank.menus.Deposit;
+//import com.revature.scottbank.menus.AccountBalance;
 import com.revature.scottbank.menus.DashboardMenu;
+import com.revature.scottbank.menus.Deposit;
 import com.revature.scottbank.menus.LoginMenu;
 import com.revature.scottbank.menus.RegisterMenu;
 import com.revature.scottbank.menus.WelcomeMenu;
+import com.revature.scottbank.menus.Withdraw;
 import com.revature.scottbank.services.AccountService;
 import com.revature.scottbank.services.CustomerService;
 import com.revature.scottbank.util.Logger;
@@ -41,8 +46,9 @@ public class AppState {
 			AccountDAO accountDao = new AccountDAO();
 			AccountService accountService = new AccountService(accountDao, customerService);
 			router.addMenu(new AccountMenu(consoleReader, router, accountService));
-		
-			
+			router.addMenu(new Withdraw(consoleReader, router, accountService));
+			router.addMenu(new Deposit(consoleReader, router, accountService));
+			router.addMenu(new BalanceOutput(consoleReader, router, accountService));
 			logger.log("Application is initialized! YAR!");
 		}
 
@@ -57,6 +63,8 @@ public void startUp() {
 }
 
 public static void shutdown() {
+
 	isRunning = false;
+	System.exit(0);
 	}
 }

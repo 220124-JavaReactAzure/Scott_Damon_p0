@@ -57,6 +57,18 @@ public class Account {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
-
+	public double deposit(double oldBalance, double deposit) {
+		double newBalance = (oldBalance + deposit);
+		return newBalance;
+	}
+	
+	public double withdraw(double oldBalance, double withdraw) {
+		double newBalance = (oldBalance - withdraw);
+		return newBalance;
+	}
+	
+	public void displayBalance(Account acc) {
+	
+	}
 
 }

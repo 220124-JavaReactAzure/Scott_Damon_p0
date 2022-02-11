@@ -3,6 +3,7 @@ package com.revature.scottbank.menus;
 import java.io.BufferedReader;
 
 import com.revature.scottbank.services.CustomerService;
+import com.revature.scottbank.util.Logger;
 import com.revature.scottbank.util.MenuRouter;
 import com.revature.scottbank.exceptions.InvalidRequestException;
 import com.revature.scottbank.models.Customer;
@@ -12,12 +13,11 @@ public class RegisterMenu extends Menu {
 	public RegisterMenu() {
 
 	}
-
 	
 	public RegisterMenu(BufferedReader consoleReader, MenuRouter router, CustomerService customerService) {
 		super("Register", "/register", consoleReader, router, customerService);
 	}
-		
+
 	@Override
 	public void render() throws Exception {
 		
@@ -46,7 +46,7 @@ public class RegisterMenu extends Menu {
 				
 				router.transfer("/register");
 			}
-			router.transfer("/dashboard");
+			router.transfer("/welcome");
 		}
 }
 
